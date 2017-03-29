@@ -12,20 +12,22 @@
 #include "gps.h"
 
 //Camera
-#include <raspicam/raspicam.h>
-#include <raspicam/raspicamtypes.h>
+#include "camera.h"
 
 //Servos
 #include "servo.h"
 #include <fcntl.h>
 
 //Temperature Sensor
-#include <wiringPi/wiringPi.h>
+//#include <wiringPi/wiringPi.h>
 #include "temp.h"
 #include <stdint.h>
 
 //Pressure Sensor
 #include "pressure.h"
+
+//Hotwire
+#include "hotwire.h"
 
 //Output
 #include <fstream>
@@ -65,13 +67,13 @@ int main()
         ofstream balloondata;
         balloondata.open("balloondata.txt");
         
-        bool hotwire=false;
-while(hotwire!=true)
-{
+     //   bool hotwire=false;
+//while(hotwire!=true)
+//{
     //----------Data Streaming----------
         //**********Latitude, Longitude, Altitude Data**********
-        //Call GPS class
-        f>>nmea;
+        //Call GPS class  
+        //f>>nmea;
         GPS gps(nmea);
             //Is the data GPGGA data only?
             if(gps.isValidGGA(nmea))
@@ -80,18 +82,12 @@ while(hotwire!=true)
                 balloondata<<gps.longitude<<" "<<gps.lonc<<endl;
                 balloondata<<gps.altitude<<" ft"<<endl;
             }
-
+        
         //**********Temperature Data**********
         //Call TEMP class
         TEMP temp;
         balloondata<<temp.temp_F<<" F"<<endl;
-//	if ( wiringPiSetup() == -1 )
-//		exit( 1 );
-//       
-//        
-//
-//        temp.tempout();
-//   
+
         //**********Pressure Data**********
         //Call PRESSURE class
         PRESSURE pressure;
@@ -99,19 +95,11 @@ while(hotwire!=true)
 
         //**********Camera Data**********
         //Counter to take pictures every 10 seconds, uses divisor check
-        if(count%2==0)
-        {
-            //Call Raspicam directory classes
-            raspicam::RaspiCam Camera;
-            Camera.grab();
-            unsigned char *data=new unsigned char [Camera.getImageTypeSize(raspicam::RASPICAM_FORMAT_RGB)];
-            Camera.retrieve(data,raspicam::RASPICAM_FORMAT_RGB);
-            ofstream outFile("raspicam_image.jpg",ios::binary);
-            outFile<<"P6\n"<<Camera.getWidth()<<" "<<Camera.getHeight()<<" 255\n";
-            outFile.write((char*) data, Camera.getImageTypeSize(raspicam::RASPICAM_FORMAT_RGB));
-            cout<<"Image saved at raspicam_image.jpg"<<endl;
-            delete data;
-        }
+        //if(count%2==0)
+        //{
+
+            CAMERA camera("Pictures/raspicam_image2.jpg");
+        //}
         //**********Servos**********
         //Altitude = 1000 feet?
         //if(gps.altitude==1000)
@@ -122,12 +110,12 @@ while(hotwire!=true)
         //}
 
         //Altitude = 2000 feet?
-        //if(gps.altitude==2000)
-        //{
-            //Call servo class with channel from Maestro
-            //Set max position for servo2
-            SERVO servo2(fd,5,9600);
-        //}
+//        if(gps.altitude==2000)
+//        {
+//            //Call servo class with channel from -+Maestro
+//            //Set max position for servo2
+             SERVO servo2(fd,5,9600);
+//        }
         //Close port
         close(fd);
 
@@ -152,11 +140,11 @@ while(hotwire!=true)
         //Ignite nichrome wire and release mechanism at 3000 ft
 //        if(gps.altitude==3000)
 //        {
-//            
+            HOTWIRE hotwire(10);
 //            //Shut off data streaming
 //            hotwire=true;
 //        }
-}       
+//}       
     //--------------------------------------------------------------------------
     //MISSION ACCOMPLISHED
 	return 0;
