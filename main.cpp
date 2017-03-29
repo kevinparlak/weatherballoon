@@ -22,6 +22,10 @@
 #include <fcntl.h>
 
 //Temperature Sensor
+<<<<<<< HEAD
+=======
+//#include <wiringPi/wiringPi.h>
+>>>>>>> 393e28f8c8a8b7dd8ecb2eb9ad466f04d601bfb5
 #include "temp.h"
 #include <stdint.h>
 
@@ -107,6 +111,7 @@ int main()
 				cout<<"Error opening saved file"<<endl;
 			}
         
+<<<<<<< HEAD
 		//*****HOTWIRE*****
 			//False means hotwire is off
 			bool hotwireON=false;
@@ -156,6 +161,28 @@ while(hotwireON!=true)
 			balloondata<<temp.temp_F<<endl;
 			//Save temperature data to appended file
 			balloondataSAVED<<temp.temp_F<<" F"<<endl;
+=======
+     //   bool hotwire=false;
+//while(hotwire!=true)
+//{
+    //----------Data Streaming----------
+        //**********Latitude, Longitude, Altitude Data**********
+        //Call GPS class  
+        //f>>nmea;
+        GPS gps(nmea);
+            //Is the data GPGGA data only?
+            if(gps.isValidGGA(nmea))
+            {
+                balloondata<<gps.latitude<<" "<<gps.latc<<endl;
+                balloondata<<gps.longitude<<" "<<gps.lonc<<endl;
+                balloondata<<gps.altitude<<" ft"<<endl;
+            }
+        
+        //**********Temperature Data**********
+        //Call TEMP class
+        TEMP temp;
+        balloondata<<temp.temp_F<<" F"<<endl;
+>>>>>>> 393e28f8c8a8b7dd8ecb2eb9ad466f04d601bfb5
 
         //**********Pressure Data**********
 			//Call PRESSURE class
@@ -166,6 +193,7 @@ while(hotwireON!=true)
 			balloondataSAVED<<pressure.pressure_psi<<" psi"<<endl;
 
         //**********Camera Data**********
+<<<<<<< HEAD
 			//Counter to take pictures every 10 seconds, uses divisor check
 			if(count%2==0)
 			{
@@ -199,12 +227,49 @@ while(hotwireON!=true)
 			
 			//Close port
 			close(fd);
+=======
+        //Counter to take pictures every 10 seconds, uses divisor check
+        //if(count%2==0)
+        //{
+
+            CAMERA camera("Pictures/raspicam_image2.jpg");
+        //}
+        //**********Servos**********
+        //Altitude = 1000 feet?
+        //if(gps.altitude==1000)
+        //{
+            //Call servo class with channel from Maestro
+            //Set max position for servo1
+            SERVO servo1(fd,1,9600);
+        //}
+
+        //Altitude = 2000 feet?
+//        if(gps.altitude==2000)
+//        {
+//            //Call servo class with channel from -+Maestro
+//            //Set max position for servo2
+             SERVO servo2(fd,5,9600);
+//        }
+        //Close port
+        close(fd);
+
+        //End timer
+        //Clock time elapsed
+        clock_t endTimer=clock();
+        double duration =(endTimer-startTimer)/(double) CLOCKS_PER_SEC;
+        //Run duration in seconds
+        //durationOverall=duration/1000000;
+        
+        double durationOverall;
+        balloondata<<duration<<" ms"<<endl;
+>>>>>>> 393e28f8c8a8b7dd8ecb2eb9ad466f04d601bfb5
 
         //**********Output**********
 			//Closing overwritten text file
 			balloondata.close();
 
         //**********RELEASE**********
+<<<<<<< HEAD
 			//Ignite nichrome wire and release mechanism at AGL == 3000 ft
 			//Redunancy???
 			
@@ -238,5 +303,17 @@ while(hotwireON!=true)
 //MISSION ACCOMPLISHED
 cout<<"MISSION ACCOMPLISHED"<<endl;
 
+=======
+        //Ignite nichrome wire and release mechanism at 3000 ft
+//        if(gps.altitude==3000)
+//        {
+            HOTWIRE hotwire(10);
+//            //Shut off data streaming
+//            hotwire=true;
+//        }
+//}       
+    //--------------------------------------------------------------------------
+    //MISSION ACCOMPLISHED
+>>>>>>> 393e28f8c8a8b7dd8ecb2eb9ad466f04d601bfb5
 	return 0;
 }

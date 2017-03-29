@@ -4,7 +4,9 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>camera.h</itemPath>
       <itemPath>gps.h</itemPath>
+      <itemPath>hotwire.h</itemPath>
       <itemPath>pressure.h</itemPath>
       <itemPath>servo.h</itemPath>
       <itemPath>temp.h</itemPath>
@@ -16,7 +18,9 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>camera.cpp</itemPath>
       <itemPath>gps.cpp</itemPath>
+      <itemPath>hotwire.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
       <itemPath>pressure.cpp</itemPath>
       <itemPath>servo.cpp</itemPath>
@@ -51,9 +55,17 @@
           <commandLine>-lraspicam -lwiringPi -lwiringPiDev</commandLine>
         </ccTool>
       </compileType>
+      <item path="camera.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="camera.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gps.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gps.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="hotwire.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="hotwire.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -90,9 +102,17 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="camera.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="camera.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gps.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gps.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="hotwire.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="hotwire.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
