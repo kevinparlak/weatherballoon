@@ -1,12 +1,14 @@
-build/Debug/GNU-Linux/main.o: main.cpp gps.h servo.h \
- ../../wiringPi/wiringPi/wiringPi.h temp.h pressure.h
+build/Debug/GNU-Linux/main.o: main.cpp gps.h camera.h servo.h temp.h \
+ pressure.h hotwire.h
 
 gps.h:
 
-servo.h:
+camera.h:
 
-../../wiringPi/wiringPi/wiringPi.h:
+servo.h:
 
 temp.h:
 
 pressure.h:
+
+hotwire.h:
