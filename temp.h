@@ -18,17 +18,6 @@ public:
     ~TEMP();
 private:
     void tempout();
-//---------------------------------------------------------------------    
-    /*
-     DHT11 Sensor
-    //Default constructor
-    TEMP();
-    void tempout();
-    //Destructor
-    ~TEMP();
-     */
-    //
 };
 
 #endif /* TEMP_H */
-
