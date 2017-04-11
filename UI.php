@@ -32,7 +32,7 @@
   	<br>
 	<li>Pressure (psi): <?php echo $data[1]	?></li> <!-- pressure input from cpp code -->
 	<br>
-	<li>Altitude (ft): <?php echo $data[2] ?></li> <!-- altitude input from cpp code -->
+	<li>Altitude (ft): <?php echo $data[1] ?></li> <!-- altitude input from cpp code -->
       </font>
   </ul>
 </div>
@@ -43,11 +43,13 @@
 <div>
 	<form action="servo.php" method="post">
 	<input type="hidden" name="color" value="red" />
+	<input type="hidden" name="exec" value="request" />
 	<input type="submit" id="button1" value="Release Red Ribbon" />
 	</form>
 
 	<form action="servo.php" method="post">
 	<input type="hidden" name="color" value="black" />
+	<input type="hidden" name="exec" value="request" />
 	<input type="submit"  id="button2" value="Release Black Ribbon"/>
 	</form>
 </div>
@@ -59,7 +61,7 @@
 <h1><center>
   <font color="white">==========================</font>
 </center></h1>
-<b><hr><b>
+
 <!-- /// Payload Button - start /// -->
 <div>
 	<form action="action.php">
