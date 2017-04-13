@@ -18,7 +18,7 @@ if (empty($_POST)) {
 } elseif ('Start FSW' == $_POST['FSW']) {
 
 //------Start FSW, then pause before retrieving output.------
-system("nohup setsid ./weather_balloon > /var/www/html/log.txt 2>&1 &");
+system("./integration_test > /dev/null 2>&1 &");
 sleep(10);
 
 //------Open File and display system checks-----------------
