@@ -1,12 +1,12 @@
 <!doctype html>
-<html>
+html>
 <head>
 <meta charset="utf-8">
 <title>Servo Release</title>
 </head>
 <body>
-<!-- Html Display regardless of where in the process -->
-<h1>Ribbon Release Confirmation</h1>
+<!-- ///Html Display regardless of where in the process -->
+<h1>Payload Release Confirmation</h1>
 <hr>
 
 <!-- ///Check if this is initial action call or 2nd confirmation-->
@@ -15,11 +15,10 @@
 ?>
 <!-- ///Optional html display if previous condition met. -->
 
-<p>Are you sure you want to release <?php echo $_POST['color']; ?> ribbon?</p>
-<form action="servo.php" method="post">
+<p>Are you sure you want to release payload?</p>
+<form action="payload.php" method="post">
 	<!-- /// Handle confirm action by resubmitting this page -->
     	<input type="hidden" value="run" name="exec" />
-	<input type="hidden" name="color" value=<?php echo $_POST['color']; ?> />
 	<input type="submit" value="Yes" />
 </form>
 <form action="UI.php" method="post">
@@ -29,14 +28,8 @@
 </form>
 <?php
 } elseif ('run' == $_POST['exec']) {
-	// Command Confirmed, run servo script.
-	// Select which color.
-	if ('red' == $_POST['color']) {
-		// Red Ribbon
-		system("./redbutton 2>&1");
-	} else {
-		// Black White Ribbon
-		system("./blackwhitebutton 2>&1");
+	// Command Confirmed, run payload script.
+	system("./hotwire 2>&1");
 	}
 } else {
 	// Assume Command is not confirmed/rescinded, return to UI, or some other error.

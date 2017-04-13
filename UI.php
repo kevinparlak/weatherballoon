@@ -21,18 +21,18 @@
 <!-- /// Temp, Pres, and Alt reader block - start /// -->
 <?php
 	//Load DATA file
-	$filename = "/home/timothy/Documents/testResource.txt";
+	$filename = "balloondata.txt";
 	$fileContents = file_get_contents($filename);
 	$data = explode("\n", $fileContents);
 ?>
 
 <div>
   <ul><font color="white">
-	<li>Temperature (&deg;C): <?php   echo $data[0]   ?> </li> <!-- temperature input from cpp code -->
+	<li>Temperature: <?php   echo $data[3]   ?> </li> <!-- temperature input from cpp code -->
   	<br>
-	<li>Pressure (psi): <?php echo $data[1]	?></li> <!-- pressure input from cpp code -->
+	<li>Pressure: <?php echo $data[4]	?></li> <!-- pressure input from cpp code -->
 	<br>
-	<li>Altitude (ft): <?php echo $data[1] ?></li> <!-- altitude input from cpp code -->
+	<li>Altitude: <?php echo $data[2] ?></li> <!-- altitude input from cpp code -->
       </font>
   </ul>
 </div>
@@ -64,7 +64,8 @@
 
 <!-- /// Payload Button - start /// -->
 <div>
-	<form action="action.php">
+	<form action="payload.php">
+	<input type="hidden" name="exec" value="request" />
 	<input type="submit" id="button3" value="Release Payload"/>
 	</form>
 </div>
@@ -86,10 +87,10 @@
 <div class="wrapper" >
 <font color="white">
 	<div id="latitude">
-		Latitude (&deg;N): <?php echo $data[3] ?> <!-- Latitude input from cpp code -->
+		Latitude: <?php echo $data[0] ?> <!-- Latitude input from cpp code -->
 	</div>
 	<div id="longtitude">
-		Longtitude (&deg;W): <?php echo $data[4] ?> <!-- Longtitude input from cpp code -->
+		Longtitude: <?php echo $data[1] ?> <!-- Longtitude input from cpp code -->
 	</div>
     </font>
 </div>
@@ -106,9 +107,9 @@
 <!--/// End /// -->
 
 
-<!-- /// placeholder 2 - start /// -->
+<!-- /// Current Image - start /// -->
 <div class="content">
-<img src="placeholder2.jpg">
+<img src="image.jpg">
 </div>
 <!--/// End /// -->
 </div>
