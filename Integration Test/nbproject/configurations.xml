@@ -4,6 +4,7 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>camera.h</itemPath>
       <itemPath>gps.h</itemPath>
       <itemPath>hotwire.h</itemPath>
       <itemPath>pressure.h</itemPath>
@@ -17,6 +18,7 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>camera.cpp</itemPath>
       <itemPath>gps.cpp</itemPath>
       <itemPath>hotwire.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
@@ -54,6 +56,10 @@
           <commandLine>-lraspicam -lraspicam_cv -lwiringPi -lwiringPiDev -lopencv_core -lopencv_imgcodecs -lopencv_highgui</commandLine>
         </ccTool>
       </compileType>
+      <item path="camera.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="camera.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gps.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gps.h" ex="false" tool="3" flavor2="0">
@@ -103,6 +109,10 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="camera.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="camera.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gps.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gps.h" ex="false" tool="3" flavor2="0">

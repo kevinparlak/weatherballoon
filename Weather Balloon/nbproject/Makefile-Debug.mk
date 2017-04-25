@@ -35,6 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/camera.o \
 	${OBJECTDIR}/gps.o \
 	${OBJECTDIR}/hotwire.o \
 	${OBJECTDIR}/main.o \
@@ -67,6 +68,11 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/weather_balloon: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/weather_balloon ${OBJECTFILES} ${LDLIBSOPTIONS}
 
+${OBJECTDIR}/camera.o: camera.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I../../raspicam -I../../wiringPi -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/camera.o camera.cpp
+
 ${OBJECTDIR}/gps.o: gps.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -76,6 +82,11 @@ ${OBJECTDIR}/hotwire.o: hotwire.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I../../wiringPi -I../../raspicam-0.0.7 -I../../opencv-master -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/hotwire.o hotwire.cpp
+
+${OBJECTDIR}/hotwire.o: hotwire.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I../../raspicam -I../../wiringPi -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/hotwire.o hotwire.cpp
 
 ${OBJECTDIR}/main.o: main.cpp
 	${MKDIR} -p ${OBJECTDIR}
